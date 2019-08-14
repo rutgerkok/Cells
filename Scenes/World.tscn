@@ -1,0 +1,126 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Cells.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/DividingCell.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/NonDividingCell.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sound/abruptend.ogg" type="AudioStream" id=5]
+
+[node name="World" type="Node2D"]
+
+[node name="Walls" type="Node2D" parent="."]
+editor/display_folded = true
+
+[node name="Wall" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 162.336, 425.747 )
+
+[node name="Wall2" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 138.337, 355.27 )
+
+[node name="Wall3" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 127.116, 287.88 )
+
+[node name="Wall4" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 193.162, 496.539 )
+
+[node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 207.056, 559.807 )
+
+[node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 271.827, 567.209 )
+
+[node name="Wall7" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 338.45, 557.956 )
+
+[node name="Wall8" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 406.923, 563.508 )
+
+[node name="Wall9" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 475.396, 574.611 )
+
+[node name="Wall10" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 547.57, 567.209 )
+
+[node name="Wall11" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 621.594, 556.105 )
+
+[node name="Wall12" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 697.47, 561.657 )
+
+[node name="Wall13" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 762.241, 570.91 )
+
+[node name="Wall14" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 771.495, 495.035 )
+
+[node name="Wall15" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 775.196, 432.114 )
+
+[node name="Wall16" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 782.598, 369.193 )
+
+[node name="Wall17" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 802.954, 234.097 )
+
+[node name="Wall18" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 814.058, 167.475 )
+
+[node name="Wall19" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 122.141, 223.925 )
+
+[node name="Wall20" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 112.888, 159.153 )
+
+[node name="Wall21" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 792.065, 303.501 )
+
+[node name="Wall22" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 105.485, 94.3815 )
+
+[node name="Wall23" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 98.0828, 31.4605 )
+
+[node name="Wall24" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 821.674, 101.784 )
+
+[node name="Wall25" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 830.928, 35.1618 )
+
+[node name="Wall26" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 888.297, -35.1617 )
+
+[node name="Wall27" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 42.5643, -33.3111 )
+
+[node name="Wall28" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( -22.2074, -96.2321 )
+
+[node name="Wall29" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 958.62, -98.0828 )
+
+[node name="Wall30" parent="Walls" instance=ExtResource( 1 )]
+position = Vector2( 1038.2, -159.153 )
+
+[node name="Cells" parent="." instance=ExtResource( 2 )]
+editor/display_folded = true
+position = Vector2( 55.5186, 40.7136 )
+
+[node name="Cell6" parent="Cells" instance=ExtResource( 3 )]
+position = Vector2( 320.157, 453.401 )
+
+[node name="Cell" parent="Cells" instance=ExtResource( 3 )]
+position = Vector2( 209.12, 457.103 )
+
+[node name="Cell2" parent="Cells" instance=ExtResource( 3 )]
+position = Vector2( 619.957, 453.401 )
+
+[node name="NonDividingCell" parent="Cells" instance=ExtResource( 4 )]
+position = Vector2( 421.941, 457.103 )
+
+[node name="Cell3" parent="Cells" instance=ExtResource( 3 )]
+position = Vector2( 523.725, 455.252 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+

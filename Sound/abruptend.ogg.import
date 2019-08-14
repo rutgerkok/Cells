@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/abruptend.ogg-f7b5480271468c2f906846f856321b6e.oggstr"
+
+[deps]
+
+source_file="res://Sound/abruptend.ogg"
+dest_files=[ "res://.import/abruptend.ogg-f7b5480271468c2f906846f856321b6e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
