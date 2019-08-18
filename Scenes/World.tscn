@@ -9,7 +9,6 @@
 [node name="World" type="Node2D"]
 
 [node name="Walls" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Wall" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 162.336, 425.747 )
@@ -21,16 +20,16 @@ position = Vector2( 138.337, 355.27 )
 position = Vector2( 127.116, 287.88 )
 
 [node name="Wall4" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 193.162, 496.539 )
+position = Vector2( 177.41, 487.947 )
 
 [node name="Wall5" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 207.056, 559.807 )
+position = Vector2( 211.352, 549.783 )
 
 [node name="Wall6" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 271.827, 567.209 )
+position = Vector2( 273.259, 552.889 )
 
 [node name="Wall7" parent="Walls" instance=ExtResource( 1 )]
-position = Vector2( 338.45, 557.956 )
+position = Vector2( 341.314, 556.524 )
 
 [node name="Wall8" parent="Walls" instance=ExtResource( 1 )]
 position = Vector2( 406.923, 563.508 )
@@ -123,4 +122,44 @@ position = Vector2( 523.725, 455.252 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 autoplay = true
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="CellDivisionLabel" type="Label" parent="Control"]
+margin_left = 841.838
+margin_top = 485.243
+margin_right = 974.838
+margin_bottom = 510.243
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Kans op blauwe cellen"
+
+[node name="CellDivisionSlider" type="HSlider" parent="Control"]
+margin_left = 833.0
+margin_top = 510.0
+margin_right = 1008.0
+margin_bottom = 526.0
+
+[node name="CellDeathLabel" type="Label" parent="Control"]
+margin_left = 840.477
+margin_top = 543.739
+margin_right = 973.477
+margin_bottom = 568.739
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Levensduur blauwe cellen"
+
+[node name="CellDeathSlider" type="HSlider" parent="Control"]
+margin_left = 834.36
+margin_top = 568.496
+margin_right = 1009.36
+margin_bottom = 584.496
+
+[node name="CreditsLabel" type="Label" parent="Control"]
+margin_left = 1.13605
+margin_top = 585.677
+margin_right = 341.136
+margin_bottom = 599.677
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Muziek door Antti Luode -  anttismusic.blogspot.com"
 
