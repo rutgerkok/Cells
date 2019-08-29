@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+signal out_of_bounds
+
 var min_area = 300
 var area = min_area
 var max_area
@@ -42,4 +44,5 @@ func _process(delta):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
+    emit_signal("out_of_bounds")
     self.queue_free()

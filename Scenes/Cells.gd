@@ -8,12 +8,17 @@ func _ready():
     for child in get_children():
         if self._has_signal(child, "divide"):
             child.connect("divide", self, "_on_cell_divide")
+        if self._has_signal(child, "out_of_bounds"):
+            child.connect("out_of_bounds", self, "_on_cell_out_of_bounds")
 
 func _has_signal(child, signal_name):
     for signal_dict in child.get_signal_list():
         if signal_dict["name"] == signal_name:
             return true
     return false
+    
+func _on_cell_out_of_bounds():
+    print("Cell out of bounds")
 
 func _on_cell_divide(position: Vector2):
     var daughter1;
@@ -21,11 +26,15 @@ func _on_cell_divide(position: Vector2):
     if randf() > Parameters.fraction_nondividing_cells:
         daughter1 = DIVIDING_CELL.instance()
         daughter1.connect("divide", self, "_on_cell_divide")
+        daughter1.connect("out_of_bounds", self, "_on_cell_out_of_bounds")
         daughter2 = DIVIDING_CELL.instance()
         daughter2.connect("divide", self, "_on_cell_divide")
+        daughter2.connect("out_of_bounds", self, "_on_cell_out_of_bounds")
     else:
         daughter1 = NON_DIVIDING_CELL.instance()
+        daughter1.connect("out_of_bounds", self, "_on_cell_out_of_bounds")
         daughter2 = NON_DIVIDING_CELL.instance()
+        daughter2.connect("out_of_bounds", self, "_on_cell_out_of_bounds")
     daughter1.position = Vector2(position.x - 5, position.y)
     self.add_child(daughter1)
     daughter2.position = Vector2(position.x + 5, position.y)

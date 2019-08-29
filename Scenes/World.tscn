@@ -124,6 +124,14 @@ position = Vector2( 523.725, 455.252 )
 stream = ExtResource( 5 )
 autoplay = true
 
+[node name="CreditsLabel" type="Label" parent="."]
+margin_left = 1.13605
+margin_top = 585.677
+margin_right = 341.136
+margin_bottom = 599.677
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Muziek door Antti Luode -  anttismusic.blogspot.com"
+
 [node name="Sliders" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -160,14 +168,6 @@ margin_right = 1009.36
 margin_bottom = 584.496
 min_value = 2.0
 value = 2.0
-
-[node name="CreditsLabel" type="Label" parent="Sliders"]
-margin_left = 1.13605
-margin_top = 585.677
-margin_right = 341.136
-margin_bottom = 599.677
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Muziek door Antti Luode -  anttismusic.blogspot.com"
 
 [connection signal="value_changed" from="Sliders/CellDivisionSlider" to="Sliders" method="_on_CellDivisionSlider_value_changed"]
 [connection signal="value_changed" from="Sliders/CellDeathSlider" to="Sliders" method="_on_CellDeathSlider_value_changed"]
