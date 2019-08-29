@@ -18,7 +18,7 @@ func _has_signal(child, signal_name):
 func _on_cell_divide(position: Vector2):
     var daughter1;
     var daughter2;
-    if randf() > 0.45:
+    if randf() > Parameters.fraction_nondividing_cells:
         daughter1 = DIVIDING_CELL.instance()
         daughter1.connect("divide", self, "_on_cell_divide")
         daughter2 = DIVIDING_CELL.instance()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Wall.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Cells.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/DividingCell.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/NonDividingCell.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sound/abruptend.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Scenes/Sliders.gd" type="Script" id=6]
 
 [node name="World" type="Node2D"]
 
@@ -123,11 +124,12 @@ position = Vector2( 523.725, 455.252 )
 stream = ExtResource( 5 )
 autoplay = true
 
-[node name="Control" type="Control" parent="."]
+[node name="Sliders" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 6 )
 
-[node name="CellDivisionLabel" type="Label" parent="Control"]
+[node name="CellDivisionLabel" type="Label" parent="Sliders"]
 margin_left = 841.838
 margin_top = 485.243
 margin_right = 974.838
@@ -135,13 +137,15 @@ margin_bottom = 510.243
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Kans op blauwe cellen"
 
-[node name="CellDivisionSlider" type="HSlider" parent="Control"]
+[node name="CellDivisionSlider" type="HSlider" parent="Sliders"]
 margin_left = 833.0
 margin_top = 510.0
 margin_right = 1008.0
 margin_bottom = 526.0
+max_value = 1.0
+step = 0.01
 
-[node name="CellDeathLabel" type="Label" parent="Control"]
+[node name="CellDeathLabel" type="Label" parent="Sliders"]
 margin_left = 840.477
 margin_top = 543.739
 margin_right = 973.477
@@ -149,13 +153,15 @@ margin_bottom = 568.739
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Levensduur blauwe cellen"
 
-[node name="CellDeathSlider" type="HSlider" parent="Control"]
+[node name="CellDeathSlider" type="HSlider" parent="Sliders"]
 margin_left = 834.36
 margin_top = 568.496
 margin_right = 1009.36
 margin_bottom = 584.496
+min_value = 2.0
+value = 2.0
 
-[node name="CreditsLabel" type="Label" parent="Control"]
+[node name="CreditsLabel" type="Label" parent="Sliders"]
 margin_left = 1.13605
 margin_top = 585.677
 margin_right = 341.136
@@ -163,3 +169,5 @@ margin_bottom = 599.677
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Muziek door Antti Luode -  anttismusic.blogspot.com"
 
+[connection signal="value_changed" from="Sliders/CellDivisionSlider" to="Sliders" method="_on_CellDivisionSlider_value_changed"]
+[connection signal="value_changed" from="Sliders/CellDeathSlider" to="Sliders" method="_on_CellDeathSlider_value_changed"]

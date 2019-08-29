@@ -5,7 +5,6 @@ var area = min_area
 var max_area
 
 var live_time = 0
-var max_live_time = 20
 
 
 func _ready():
@@ -15,16 +14,11 @@ func _ready():
     var existing_shape: Shape2D = $CollisionShape2D.get_shape()
     $CollisionShape2D.set_shape(existing_shape.duplicate())
 
-func _input(event):
-    if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-        self.queue_free()
-        
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
     live_time += delta
-    if live_time > max_live_time:
+    if live_time > Parameters.max_live_time_nondividing_cells_seconds:
         # Die
         queue_free()
         return
