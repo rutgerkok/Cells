@@ -7,7 +7,7 @@ var area = min_area
 var max_area
 
 var live_time = 0
-
+var planned_death = false
 
 func _ready():
     max_area = 1000 + randf() * 400
@@ -22,7 +22,8 @@ func _process(delta):
     live_time += delta
     if live_time > Parameters.max_live_time_nondividing_cells_seconds:
         # Die
-        queue_free()
+        self.planned_death = true
+        self.queue_free()
         return
 
     area += delta * 100
@@ -40,9 +41,20 @@ func _process(delta):
     var sprite : Sprite = $Sprite
     var texture_size = sprite.texture.get_size()
     sprite.scale = Vector2(desired_width / texture_size.x, desired_width / texture_size.y)
-    
+
+
+func _input(event):
+   # Deletes cells on click
+   if event is InputEventMouseButton and event.is_pressed():
+       var mouse_relative = self.make_input_local(event).position
+       if mouse_relative.length_squared() < self.area:
+           self.planned_death = true
+           self.queue_free()
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-    emit_signal("out_of_bounds")
+    if not self.planned_death:
+        # For some reason, this event also fires if queue_free is called
+        emit_signal("out_of_bounds")
+        self.planned_death = true
     self.queue_free()

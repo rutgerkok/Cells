@@ -8,11 +8,10 @@ var area = min_area
 var max_area
 
 
-var _divided  # Set to false during division, so that 
+var planned_death = false
 
 
 func _ready():
-    _divided = false
     max_area = 1400 + randf() * 400
     
     # Make sure each cell has their own shape instance
@@ -26,7 +25,7 @@ func _process(delta):
     if area > max_area:
         # Divide
         emit_signal("divide", self.position)
-        self._divided = true
+        self.planned_death = true
         self.queue_free()
 
     var radius = sqrt(area)
@@ -37,11 +36,17 @@ func _process(delta):
     var texture_size = sprite.texture.get_size()
     sprite.scale = Vector2(desired_width / texture_size.x, desired_width / texture_size.y)
     
-
+func _input(event):
+   # Deletes cells on click
+   if event is InputEventMouseButton and event.is_pressed():
+       var mouse_relative = self.make_input_local(event).position
+       if mouse_relative.length_squared() < self.area:
+           self.planned_death = true
+           self.queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
-    # For some reason, _screen_exited is fired on queue_free. So ignore if that queue_free came from a division
-    if not self._divided:
+    if not self.planned_death:
+        # For some reason, this event also fires if queue_free is called
         emit_signal("out_of_bounds")
-
+        self.planned_death = true
     self.queue_free()
