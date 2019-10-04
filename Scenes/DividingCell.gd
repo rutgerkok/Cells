@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal divide
 signal out_of_bounds
+signal cell_ablation
 
 var min_area = 300
 var area = min_area
@@ -21,7 +22,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 
-    area += delta * 300
+    area += delta * Parameters.game_speed * 300
     if area > max_area:
         # Divide
         emit_signal("divide", self.position)
@@ -42,6 +43,7 @@ func _input(event):
        var mouse_relative = self.make_input_local(event).position
        if mouse_relative.length_squared() < self.area:
            self.planned_death = true
+           emit_signal("cell_ablation")
            self.queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():

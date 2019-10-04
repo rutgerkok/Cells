@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 signal out_of_bounds
+signal cell_ablation
 
 var min_area = 300
 var area = min_area
@@ -19,20 +20,18 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     
-    live_time += delta
+    live_time += delta * Parameters.game_speed
     if live_time > Parameters.max_live_time_nondividing_cells_seconds:
         # Die
         self.planned_death = true
         self.queue_free()
         return
 
-    area += delta * 100
+    area += delta * Parameters.game_speed * 100
     if area > max_area:
         # Stop growing
         area = max_area
         return
-        
-
 
     var radius = sqrt(area)
 
@@ -49,6 +48,7 @@ func _input(event):
        var mouse_relative = self.make_input_local(event).position
        if mouse_relative.length_squared() < self.area:
            self.planned_death = true
+           emit_signal("cell_ablation")
            self.queue_free()
 
 
