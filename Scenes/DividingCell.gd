@@ -4,7 +4,7 @@ signal divide
 signal out_of_bounds
 signal cell_ablation
 
-var min_area = 300
+var min_area = 300.0
 var area = min_area
 var max_area
 

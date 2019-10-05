@@ -42,14 +42,25 @@ func _process(delta):
         _previous_max_live_time_nondividing_cells_seconds = Parameters.max_live_time_nondividing_cells_seconds
         emit_signal("game_modified")
         
-    # Check if there are still divding cells
-    var found_dividing = false
-    for child in self.get_children():
-        if _has_signal(child, "divide"):
-            found_dividing = true
-    if not found_dividing and not self._game_over:
-        emit_signal("game_over")  # If not, then it's game over
-        self._game_over = true
+    # Bookkeeping of cell count, to adjust game speed and end the game
+    if not self._game_over:
+        var dividing_count = 0
+        var nondividing_count = 0
+        for child in self.get_children():
+            if _has_signal(child, "divide"):
+                dividing_count += 1
+            else:
+                nondividing_count += 1
+        
+        # Let game speed depend on ratio between red and blue cells
+        if nondividing_count + dividing_count > 0:
+            Parameters.game_speed = max(0.5, float(nondividing_count) / (nondividing_count + dividing_count))
+        
+        # No dividing cells, game over
+        if dividing_count == 0 or nondividing_count == 0:
+            emit_signal("game_over")
+            self._game_over = true
+            
     
     
 func _on_cell_out_of_bounds():
